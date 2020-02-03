@@ -105,11 +105,8 @@ def load_data(directory, file_name):
 
 def prepare_corpus():
     freq_words = nltk.FreqDist(brown.words())
-    most_common_tokens = freq_words.most_common(10000)
-
-    valid_english_words = set(words.words())
-    most_common_english_words = [item[0] for item in most_common_tokens if item[0] in valid_english_words]
-    top_5000_english_words = most_common_english_words[:5000]
+    top_5000_english_counts = freq_words.most_common(5000)
+    top_5000_english_words = [item[0] for item in top_5000_english_counts]
     top_5 = top_5000_english_words[:5]
     bot_5 = top_5000_english_words[-5:]
     save_data("step2", "top5_common_words.json", top_5)
